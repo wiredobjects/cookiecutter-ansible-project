@@ -1,0 +1,9 @@
+---
+# common variables for all nodes
+
+project:
+  meta:
+    organization:
+    application:
+  deployment_env: dev # override via extra_vars in /vars
+  

@@ -1,0 +1,4 @@
+# Ansible inventory file for deployment environment: dev
+
+[local]
+localhost ansible_connection=local

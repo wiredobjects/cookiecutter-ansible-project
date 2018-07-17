@@ -1,0 +1,3 @@
+---
+
+- import_playbook: playbooks/iaas.yml

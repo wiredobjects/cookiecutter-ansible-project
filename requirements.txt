@@ -1,0 +1,7 @@
+cookiecutter==1.6.0
+
+# Testing
+pylint==1.9.2
+pytest==3.6.3
+tox==3.1.2
+pytest-cookies==0.3.0

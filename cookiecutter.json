@@ -1,0 +1,18 @@
+{
+    "project_name": "Ansible Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '-') }}",
+    "project_short_description": "Ansible playbooks for provisioning/deploying {{ cookiecutter.project_name }}.",
+    "version": "0.1.0",
+    "author_name": "Sven Wilhelm",
+    "email": "refnode@gmail.com",
+    "github_username": "refnode",
+    "create_author_file": "y",
+    "open_source_license": [
+        "MIT",
+        "BSD",
+        "GPLv3",
+        "ISCL",
+        "Apache Software License 2.0",
+        "Not open source"
+    ]
+}

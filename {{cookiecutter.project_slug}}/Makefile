@@ -1,0 +1,48 @@
+.PHONY: virtualenv galaxy test run clean
+
+PROJECT_BASE_DIR            = $(shell ls ansible.cfg)
+DEPLOYMENT_ENV             ?= dev
+VENV_ACTIVATE               = source virtualenv/bin/activate
+ANSIBLE_DIR_ROLES_EXTERNAL  = roles/external
+ANSIBLE_INVENTORY_FILE      = inventory/$(DEPLOYMENT_ENV)
+ANSIBLE_EXTRA_VARS          = vars/$(DEPLOYMENT_ENV).yml
+ANSIBLE_PLAYBOOK_CMD        = ansible-playbook -i $(ANSIBLE_INVENTORY_FILE) --extra-vars "@$(ANSIBLE_EXTRA_VARS)"
+
+virtualenv: virtualenv/.built
+galaxy: roles/external/.built
+
+print_basedir:
+	@echo $(PROJECT_BASE_DIR)
+help:
+	@echo 'Usage:'
+	@echo '    make virtualenv      Prepare the virtualenv environment'
+	@echo '    make galaxy          Download external roles from galaxy or custom sources'
+	@echo '    make test            Ansible playbooks tests'
+	@echo '    make run             Ansible playbook run'
+	@echo '    make clean           Remove virtualenv environment and external galaxy roles'
+	@echo '    make all             Run: virtualenv galaxy test run'
+	@echo
+
+all: virtualenv galaxy test run
+
+virtualenv/.built: requirements.txt
+	rm -rf virtualenv
+	virtualenv virtualenv
+	$(VENV_ACTIVATE) && pip install -r requirements.txt
+	touch $@
+
+roles/external/.built: virtualenv/.built roles/requirements.yml
+	$(VENV_ACTIVATE) && ansible-galaxy install -r roles/requirements.yml -p $(ANSIBLE_DIR_ROLES_EXTERNAL)
+	touch $@
+
+test:
+	$(VENV_ACTIVATE) && $(ANSIBLE_PLAYBOOK_CMD) --syntax-check site.yml
+	$(VENV_ACTIVATE) && ansible-lint --exclude $(ANSIBLE_DIR_ROLES_EXTERNAL) site.yml
+
+run:
+	$(VENV_ACTIVATE) && $(ANSIBLE_PLAYBOOK_CMD) site.yml
+
+clean:
+	rm -rf virtualenv
+	rm -rf $(ANSIBLE_DIR_ROLES_EXTERNAL)/*
+	rm -rf site.retry
