@@ -1,7 +1,7 @@
 .PHONY: virtualenv galaxy test run clean
 
 PROJECT_BASE_DIR            = $(shell ls ansible.cfg)
-DEPLOYMENT_ENV             ?= dev
+DEPLOYMENT_ENV             ?= {{ cookiecutter.deployment_env_dev }}
 VENV_ACTIVATE               = source virtualenv/bin/activate
 ANSIBLE_DIR_ROLES_EXTERNAL  = roles/external
 ANSIBLE_INVENTORY_FILE      = inventory/$(DEPLOYMENT_ENV)

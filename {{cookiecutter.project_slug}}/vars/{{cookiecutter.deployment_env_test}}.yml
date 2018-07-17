@@ -1,0 +1,5 @@
+---
+# Extra vars for deployment environment: {{ cookiecutter.deployment_env_test }}
+
+project:
+  deployment_env: {{ cookiecutter.deployment_env_test }}

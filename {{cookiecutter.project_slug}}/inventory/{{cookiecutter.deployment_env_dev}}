@@ -1,0 +1,4 @@
+# Ansible inventory file for deployment environment: {{ cookiecutter.deployment_env_dev }}
+
+[local]
+localhost ansible_connection=local

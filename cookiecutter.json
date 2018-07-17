@@ -14,5 +14,8 @@
         "ISCL",
         "Apache Software License 2.0",
         "Not open source"
-    ]
+    ],
+    "deployment_env_dev": "dev",
+    "deployment_env_test": "test",
+    "deployment_env_prod": "prod"
 }

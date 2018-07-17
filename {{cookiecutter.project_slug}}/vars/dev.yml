@@ -1,5 +1,0 @@
----
-# Extra vars for deployment environment: dev
-
-project:
-  deployment_env: dev
