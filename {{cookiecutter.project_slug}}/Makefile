@@ -28,7 +28,7 @@ help:
 	@echo '    make virtualenv      Prepare the virtualenv environment'
 	@echo '    make galaxy          Download external roles from galaxy or custom sources'
 	@echo '    make test            Ansible playbooks tests'
-	{% if cookiecutter.iaas_role_enable -%}
+	{% if cookiecutter.iaas_role_enable == 'y' -%}
 	@echo '    make run-iaas        Ansible/Terraform run for IaaS'
 	{% endif -%}
 	@echo '    make run             Ansible playbook run'
@@ -59,7 +59,7 @@ test:
 	$(VENV_ACTIVATE) && $(ANSIBLE_PLAYBOOK_CMD) --syntax-check site.yml
 	$(VENV_ACTIVATE) && ansible-lint --exclude $(ANSIBLE_DIR_ROLES_EXTERNAL) site.yml
 
-{% if cookiecutter.iaas_role_enable -%}
+{% if cookiecutter.iaas_role_enable == 'y' -%}
 run-iaas:
 	mkdir -p build/terraform/$(DEPLOYMENT_ENV)
 	mkdir -p terraform_states/$(DEPLOYMENT_ENV)
@@ -67,7 +67,7 @@ run-iaas:
 	terraform apply -state terraform_states/$(DEPLOYMENT_ENV)/terraform.tfstate build/terraform/$(DEPLOYMENT_ENV)
 {% endif -%}
 
-run: {% if cookiecutter.iaas_role_enable %} run-iaas {% endif %}
+run: {% if cookiecutter.iaas_role_enable == 'y' %} run-iaas {% endif %}
 	$(VENV_ACTIVATE) && $(ANSIBLE_PLAYBOOK_CMD) site.yml
 
 clean:
