@@ -5,8 +5,10 @@ ARCHITECTURE               := $(shell uname -m | sed -e 's/x86_64/amd64/')
 PROJECT_DIR                 = $(PWD)
 DEPLOYMENT_ENV             ?= {{ cookiecutter.deployment_env_dev }}
 VENV_ACTIVATE               = source virtualenv/bin/activate
+{% if cookiecutter.iaas_use_terraform == 'y' -%}
 TERRAFORM_RELEASE          ?= {{ cookiecutter.terraform_release }}
 TERRAFORM_RELEASE_ARCHIVE   = terraform_$(TERRAFORM_RELEASE)_$(PLATFORM)_$(ARCHITECTURE)
+{% endif -%}
 ANSIBLE_DIR_ROLES_EXTERNAL  = roles/external
 ANSIBLE_INVENTORY_FILE      = inventory/$(DEPLOYMENT_ENV)
 ANSIBLE_EXTRA_VARS          = vars/$(DEPLOYMENT_ENV).yml
