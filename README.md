@@ -1,5 +1,7 @@
 # Cookiecutter Template: Ansible Project
 
+[![Build Status](https://travis-ci.org/wiredobjects/cookiecutter-ansible-project.svg?branch=develop)](https://travis-ci.org/wiredobjects/cookiecutter-ansible-project)
+
 This cookiecutter template is a generalized merge of the
 [Ansible Best Practices](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html)
 and the customizations done in several Ansible based projects.
