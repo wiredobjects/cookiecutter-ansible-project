@@ -28,4 +28,5 @@ def test_default_configuration(cookies):
     assert os.path.isfile(os.path.join(inventory_dir, 'dev'))
     assert os.path.isfile(os.path.join(inventory_dir, 'test'))
     assert os.path.isfile(os.path.join(inventory_dir, 'prod'))
-
+    assert not os.path.exists(os.path.join(str(result.project), 'roles', 'internal', 'iaas'))
+    assert not os.path.exists(os.path.join(str(result.project), 'playbooks', 'iaas.yml'))

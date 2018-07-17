@@ -1,0 +1,10 @@
+---
+# tasks file for {{ cookiecutter.project_name }} IaaS role
+
+- name: Generate Terraform config into dir build/terraform/env_name
+  template:
+    src: "{{ '{{ item }}' }}.j2"
+    dest: "{{ '{{ project_dir }}' }}/build/terraform/{{ '{{ item }}' }}"
+    mode: 0644
+  loop:
+    - "main.tf"

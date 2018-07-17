@@ -17,5 +17,11 @@
     ],
     "deployment_env_dev": "dev",
     "deployment_env_test": "test",
-    "deployment_env_prod": "prod"
+    "deployment_env_prod": "prod",
+    "iaas_role_enable": "n",
+    "iaas_use_terraform": "n",
+    "terraform_release": "0.11.7",
+    "_copy_without_render": [
+        "roles/internal/iaas/templates/main.tf.j2"
+    ]
 }
