@@ -2,4 +2,5 @@
 
 - name: IaaS provisioning
   hosts: localhost
-  roles: {}
+  roles:
+    - role: iaas 

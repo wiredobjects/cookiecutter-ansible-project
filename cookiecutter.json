@@ -17,5 +17,7 @@
     ],
     "deployment_env_dev": "dev",
     "deployment_env_test": "test",
-    "deployment_env_prod": "prod"
+    "deployment_env_prod": "prod",
+    "iaas_role_enable": "n",
+    "iaas_use_terraform": "y"
 }
