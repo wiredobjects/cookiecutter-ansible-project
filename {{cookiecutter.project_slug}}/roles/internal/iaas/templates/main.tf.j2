@@ -1,0 +1,5 @@
+{# define common used variables and shorthands -#}
+{% set organization       = project["meta"]["organization"] | lower -%}
+{% set application        = project["meta"]["service"] | lower -%}
+{% set deployment_env     = project["deployment_env"] | lower -%}
+{% set description_prefix = "Terraform: " -%}

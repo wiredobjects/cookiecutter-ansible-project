@@ -14,5 +14,14 @@
         "ISCL",
         "Apache Software License 2.0",
         "Not open source"
+    ],
+    "deployment_env_dev": "dev",
+    "deployment_env_test": "test",
+    "deployment_env_prod": "prod",
+    "iaas_role_enable": "n",
+    "iaas_use_terraform": "n",
+    "terraform_release": "0.11.7",
+    "_copy_without_render": [
+        "roles/internal/iaas/templates/main.tf.j2"
     ]
 }

@@ -18,11 +18,15 @@ def context():
     }
 
 
-#def test_default_configuration(cookies, context):
 def test_default_configuration(cookies):
-    #result = cookies.bake(extra_context=context)
     result = cookies.bake()
+    inventory_dir = os.path.join(str(result.project), 'inventory')
     assert result.exit_code == 0
     assert result.exception is None
     assert result.project.basename == 'ansible-project'
     assert result.project.isdir()
+    assert os.path.isfile(os.path.join(inventory_dir, 'dev'))
+    assert os.path.isfile(os.path.join(inventory_dir, 'test'))
+    assert os.path.isfile(os.path.join(inventory_dir, 'prod'))
+    assert not os.path.exists(os.path.join(str(result.project), 'roles', 'internal', 'iaas'))
+    assert not os.path.exists(os.path.join(str(result.project), 'playbooks', 'iaas.yml'))

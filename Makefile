@@ -1,4 +1,4 @@
-.PHONY: virtualenv test clean
+.PHONY: virtualenv test docs clean
 
 VENV_ACTIVATE           = source virtualenv/bin/activate
 
@@ -8,10 +8,11 @@ help:
 	@echo 'Usage:'
 	@echo '    make virtualenv         Clean and prepare a new virtualenv'
 	@echo '    make test               Test the cookie'
+	@echo '    make docs               Render documentation'
 	@echo '    make clean              Remove virtualenv environment'
 	@echo
 
-virtualenv/.built: clean requirements.txt
+virtualenv/.built: requirements.txt
 	virtualenv virtualenv
 	$(VENV_ACTIVATE) && pip install -r requirements.txt
 	touch $@
@@ -19,5 +20,10 @@ virtualenv/.built: clean requirements.txt
 test:
 	$(VENV_ACTIVATE) && tox -e py27
 
+docs:
+	$(VENV_ACTIVATE) && $(MAKE) -C docs clean html
+
 clean:
+	$(VENV_ACTIVATE) && $(MAKE) -C docs clean 
 	rm -rf virtualenv
+
