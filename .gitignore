@@ -92,5 +92,6 @@ crash.log
 #
 # example.tfvars
 
-
+# custom
+virtualenv/
 # End of https://www.gitignore.io/api/python,ansible,terraform
