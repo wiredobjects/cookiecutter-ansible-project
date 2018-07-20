@@ -12,7 +12,7 @@ help:
 	@echo '    make clean              Remove virtualenv environment'
 	@echo
 
-virtualenv/.built: clean requirements.txt
+virtualenv/.built: requirements.txt
 	virtualenv virtualenv
 	$(VENV_ACTIVATE) && pip install -r requirements.txt
 	touch $@
